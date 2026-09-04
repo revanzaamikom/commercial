@@ -3,26 +3,50 @@ require_once __DIR__ . '/includes/functions.php';
 $s = get_settings();
 $categories = get_categories();
 $products = get_products();
-$galeri = get_galeri(12);
+$galeri = get_galeri(10);
 $faq = get_faq();
 $isOpen = buka_sekarang($s);
+
+// foto pilihan untuk hero/tentang/foto-break (dari galeri + produk)
+$heroImg   = $U2 ?? null;
+$galBySlug = [];
+foreach ($galeri as $g) $galBySlug[$g['kategori_slug']][] = $g;
+$firstPhoto = fn(string $slug, string $fallback) => $galBySlug[$slug][0]['gambar'] ?? $fallback;
+$heroPhoto   = $firstPhoto('undangan-lasercut', '/assets/uploads/lasercut-lasercut-001.webp');
+$tentangBig  = $firstPhoto('undangan-lasercut', '/assets/uploads/lasercut-lasercut-008.webp');
+$tentangSmall= $firstPhoto('undangan-lasercut', '/assets/uploads/undangan-avis-undangan-avis-003.webp');
+$breakImg    = '/assets/uploads/p/mbiz-banner-fl280gr-5x2-5.webp';
+$catPhotoDefault = [
+  'banner-outdoor'        => '/assets/uploads/p/mbiz-banner-fl280gr-6x3.webp',
+  'stempel-administrasi'  => '/assets/uploads/p/tisera-stempel.webp',
+  'merchandise-custom'    => '/assets/uploads/p/tisera-tumbler-plastik.webp',
+  'undangan-lasercut'     => '/assets/uploads/undangan-cr7-undangan-cr7-004.webp',
+];
 require __DIR__ . '/includes/header.php';
 ?>
 <main>
 <!--
-IMPECCABLE DIRECTION CONTRACT — "Galeri Cetak" (editorial print-gallery) — seed 877f1e7c, code-led, brief-pinned by user reference (NFT art-gallery demo), adapted not copied.
-THESIS: an art gallery hung with real print work — monochrome paper chrome, the work is the only saturated color; refuses the generic green "web-printer" template and cream+serif AI default.
-OWN-WORLD: paper #FCFCFC, panel #F7F7F5, ink #111, hairline #E5E5E5, brand gold #FFC72C, zero radius, Fraunces roman+italic display, Anton numerals-accent, Figtree text, uppercase tracked eyebrows, binary black filled/outline buttons, glass price card, pigment bars per category.
-STORY: visitor reads tagline + badge in 5s, trusts via verified "mulai dari" prices and e-procurement registration, orders via prefilled WhatsApp.
-FIRST VIEWPORT: hairline top bar (open/closed dot left, e-proc badge right); hero centered: eyebrow, H1 "Nek Ora PAKTJIP Ora" (Ora italic gold), one-line sub, button pair (Pesan via WA filled / Lihat Katalog outline), below: 4 pigment category tiles with counts.
-FORM: brief-pinned gallery-editorial; category tiles derived from chromatophore donation, glass card from reference.
+IMPECCABLE DIRECTION CONTRACT — "Workshop Journal" — rebuild dari mockup di-approve user 100% (2026-09-05).
+Fusi 3 referensi user: NFT gallery (chrome editorial, gold, serif) + CentralPrint (katalog image-forward, cara order, trust) + Bucini (ticker marquee, kategori foto, gram strip, hero foto overlay).
+THESIS: workshop cetak nyata jadi panggung — foto dokumentasi & produk mengisi halaman, chrome monokrom kertas longgar, emas brand sebagai penanda; menolak template "web-printer hijau" dan layout NFT referensi yang lama.
+OWN-WORLD: paper #FCFCFC, ink #111, panel #F7F7F5, hairline #E5E5E5, brand gold #F5C518 (logo asli), text-gold #7C5F04, pigment 4 kategori; Fraunces roman+italic, Anton angka, Figtree body; radius 0; tanpa eyebrow kicker.
+STORY: visitor 5 detik tahu ini percetakan Temanggung; harga "mulai dari" nyata; semua CTA ke WA prefill.
+FIRST VIEWPORT: ticker marquee ink-gold; topbar status; nav sticky; hero split — kiri H1 + CTA + 3 foto proof, kanan foto workshop full-height + frame + tag lokasi.
+FORM: mockup disetujui sebagai law; galeri gram-strip horizontal.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Terdaftar e-Procurement Nasional</span><span>✦</span>
+    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Terdaftar e-Procurement Nasional</span><span>✦</span>
+  </div>
+</div>
+
 <header class="topbar">
   <div class="wrap topbar-in">
     <span class="open-state" data-open-state data-hours="<?= e($s['jam_operasional']) ?>">
       <span class="dot <?= $isOpen ? 'on' : 'off' ?>" aria-hidden="true"></span>
-      <?= $isOpen ? 'Buka sekarang' : 'Tutup — buka 08.00' ?>
+      <?= $isOpen ? 'Buka sekarang · Sen–Sab 08.00–17.30' : 'Tutup — buka 08.00' ?>
     </span>
     <span class="topbar-badge">Terdaftar e-Procurement · Mbizmarket · Tisera</span>
   </div>
@@ -36,57 +60,71 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </button>
     <div class="nav-menu" id="navmenu">
       <a href="#katalog">Katalog</a>
-      <a href="#kalkulator">Estimasi Harga</a>
+      <a href="#kalkulator">Estimasi</a>
       <a href="#galeri">Galeri</a>
+      <a href="#tentang">Tentang</a>
       <a href="#faq">FAQ</a>
-      <a href="#kontak">Kontak</a>
       <a class="btn btn-sm" href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, saya mau pesan.')) ?>" target="_blank" rel="noopener">Pesan via WA</a>
     </div>
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
+<!-- HERO SPLIT -->
 <section class="hero">
-  <div class="wrap hero-in">
-    <p class="eyebrow">One-stop digital printing · Temanggung</p>
-    <h1 class="hero-title">Nek Ora PAKTJIP <em>Ora</em></h1>
-    <p class="hero-sub">Cetak digital, stempel, banner, undangan, sablon &amp; lasercut — dari pesanan satuan sampai pengadaan instansi.</p>
+  <div class="hero-copy">
+    <p class="kicker-top">One-stop digital printing · Temanggung</p>
+    <h1>Nek Ora PAKTJIP <em>Ora</em></h1>
+    <p class="lead">Cetak digital, stempel, banner, undangan, sablon &amp; lasercut — dari pesanan satuan sampai pengadaan instansi. Dikerjakan di workshop kami di Jampiroso.</p>
     <div class="btn-row">
       <a class="btn" href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, saya mau pesan.')) ?>" target="_blank" rel="noopener">Pesan via WhatsApp</a>
       <a class="btn btn-ghost" href="#katalog">Lihat Katalog</a>
     </div>
-    <div class="cat-tiles" role="list" aria-label="Kategori produk">
-      <?php foreach ($categories as $c):
-        $n = count(array_filter($products, fn($p) => $p['kategori_slug'] === $c['slug'])); ?>
-      <a role="listitem" class="cat-tile" href="#katalog" data-cat-link="<?= e($c['slug']) ?>">
-        <span class="cat-pigment" style="--pig:<?= e($c['warna']) ?>" aria-hidden="true"></span>
-        <span class="cat-name"><?= e($c['nama_kategori']) ?></span>
-        <span class="cat-count"><?= $n ?> produk</span>
+    <p class="wa-note">Dibalas langsung oleh tim workshop — bukan bot.</p>
+    <div class="hero-proofs">
+      <?php foreach (array_slice($galeri, 0, 3) as $g): if (!is_file(__DIR__ . $g['gambar'])) continue; ?>
+      <figure><img src="<?= e($g['gambar']) ?>" alt="<?= e($g['judul'] ?: 'Hasil cetak PakTjip') ?>" loading="lazy" width="400" height="300"></figure>
+      <?php endforeach; ?>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="<?= e($heroPhoto) ?>" alt="Hasil cetak di workshop PakTjip" width="900" height="1100">
+    <div class="hero-frame" aria-hidden="true"></div>
+    <span class="hero-tag">Workshop · Jl. Jampiroso Utara 196B</span>
+  </div>
+</section>
+
+<!-- KATEGORI FOTO -->
+<section class="cats" aria-label="Kategori produk">
+  <div class="wrap">
+    <div class="cats-head">
+      <h2>Mulai dari <em>yang kamu butuh</em></h2>
+      <p>Empat lini produksi, satu workshop. Klik kategori untuk melompat ke katalog.</p>
+    </div>
+    <div class="cat-grid">
+      <?php
+      $catCounts = [];
+      foreach ($products as $p) $catCounts[$p['kategori_slug']] = ($catCounts[$p['kategori_slug']] ?? 0) + 1;
+      foreach ($categories as $c):
+        $img = $catPhotoDefault[$c['slug']] ?? '/assets/uploads/lasercut-lasercut-003.webp';
+        $n = $catCounts[$c['slug']] ?? 0;
+      ?>
+      <a class="cat-card" href="#katalog" data-cat-link="<?= e($c['slug']) ?>" style="--pig:<?= e($c['warna']) ?>">
+        <img src="<?= e($img) ?>" alt="<?= e($c['nama_kategori']) ?>" loading="lazy" width="600" height="800">
+        <span class="cat-pig" aria-hidden="true"></span>
+        <span class="cat-label"><strong><?= e($c['nama_kategori']) ?></strong><span><?= $n ?>+ produk</span></span>
       </a>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- ============ PROOF STRIP ============ -->
-<section class="proof" aria-label="Kepercayaan">
-  <div class="wrap proof-grid">
-    <div class="proof-item"><strong>10+ tahun</strong><span>berpengalaman melayani cetak Temanggung</span></div>
-    <div class="proof-item"><strong>2022</strong><span>terdaftar e-procurement nasional (Mbizmarket &amp; Tisera)</span></div>
-    <div class="proof-item"><strong>READY</strong><span>stok ready — order hari ini, proses hari ini</span></div>
-    <div class="proof-item"><strong>PDN</strong><span>produk dalam negeri · Bangga Buatan Indonesia</span></div>
-  </div>
-</section>
-
-<!-- ============ KATALOG ============ -->
-<section class="section" id="katalog">
+<!-- KATALOG -->
+<section class="katalog" id="katalog">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Katalog produk</p>
+    <div class="cats-head">
       <h2>Semua yang bisa dicetak, <em>siap order</em></h2>
-      <p class="sec-sub">Harga “mulai dari” riil dari katalog resmi kami di Mbizmarket &amp; Tisera. Klik produk — WhatsApp terbuka dengan pesan terisi.</p>
+      <p>Harga “mulai dari” dari katalog resmi kami di Mbizmarket &amp; Tisera. Klik produk — WhatsApp terbuka dengan pesan terisi.</p>
     </div>
-
     <div class="filters" role="tablist" aria-label="Filter kategori">
       <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">Semua</button>
       <?php foreach ($categories as $c): ?>
@@ -95,23 +133,26 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </button>
       <?php endforeach; ?>
     </div>
-
     <div class="prod-grid" id="prodgrid">
-      <?php foreach ($products as $p): ?>
+      <?php foreach ($products as $p): $hasImg = !empty($p['gambar_utama']) && is_file(__DIR__ . $p['gambar_utama']); ?>
       <article class="prod-card reveal" data-cat="<?= e($p['kategori_slug']) ?>" style="--pig:<?= e($p['warna']) ?>">
-        <div class="prod-head">
-          <span class="prod-cat"><?= e($p['nama_kategori']) ?></span>
-          <span class="prod-status st-<?= e($p['status']) ?>"><?= e($p['status']) ?></span>
+        <div class="prod-media">
+          <img src="<?= e($hasImg ? $p['gambar_utama'] : ($catPhotoDefault[$p['kategori_slug']] ?? $heroPhoto)) ?>"
+               alt="<?= e($p['nama_produk']) ?>" loading="lazy" width="600" height="600">
+          <span class="status st-<?= e($p['status']) ?>"><?= e($p['status']) ?></span>
+          <span class="pig" aria-hidden="true"></span>
         </div>
-        <h3 class="prod-name"><?= e($p['nama_produk']) ?></h3>
-        <p class="prod-desc"><?= e($p['deskripsi']) ?></p>
-        <div class="glass prod-price">
-          <span class="price-label"><?= $p['satuan'] === 'tanya harga' ? 'Harga' : 'Mulai dari' ?></span>
-          <span class="price-val"><?= e(harga_label($p)) ?></span>
-          <a class="btn btn-sm btn-block" target="_blank" rel="noopener"
-             href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, saya ingin memesan produk ' . $p['nama_produk'] . '. ' . ($p['harga'] > 0 ? 'Estimasi harga ' . harga_label($p) . '.' : 'Boleh minta info harganya?'))) ?>">
-            Pesan produk ini
-          </a>
+        <div class="prod-body">
+          <h3><?= e($p['nama_produk']) ?></h3>
+          <p><?= e($p['deskripsi']) ?></p>
+          <div class="prod-price">
+            <span class="val">
+              <small><?= $p['satuan'] === 'tanya harga' ? 'Harga' : 'Mulai dari' ?></small>
+              <?= e(harga_label($p)) ?>
+            </span>
+            <a class="btn btn-sm btn-ghost" target="_blank" rel="noopener"
+               href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, saya ingin memesan produk ' . $p['nama_produk'] . '. ' . ($p['harga'] > 0 ? 'Estimasi harga ' . harga_label($p) . '.' : 'Boleh minta info harganya?'))) ?>">Pesan</a>
+          </div>
         </div>
       </article>
       <?php endforeach; ?>
@@ -120,13 +161,22 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
 </section>
 
-<!-- ============ KALKULATOR ============ -->
-<section class="section section-panel" id="kalkulator">
+<!-- FOTO BREAK -->
+<section class="fotobreak">
+  <img src="<?= e($breakImg) ?>" alt="Banner besar terpasang" loading="lazy" width="1600" height="600">
+  <div class="fb-inner">
+    <h2>Butuh hari ini <em>nggak bisa nunggu?</em></h2>
+    <p>Chat dulu — kalau slot produksi kosong, order kamu diproses hari itu juga.</p>
+    <a class="btn btn-gold" href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, saya butuh cepat. Masih bisa diproses hari ini?')) ?>" target="_blank" rel="noopener">Cek Slot Hari Ini</a>
+  </div>
+</section>
+
+<!-- KALKULATOR -->
+<section id="kalkulator">
   <div class="wrap calc-wrap">
-    <div class="sec-head sec-left">
-      <p class="eyebrow">Kalkulator estimasi</p>
+    <div class="cats-head" style="margin:0">
       <h2>Hitung dulu, <em>order kemudian</em></h2>
-      <p class="sec-sub">Estimasi kasar berdasarkan harga katalog resmi kami. Harga final dikonfirmasi PakTjip via WhatsApp. Contoh: banner 2×3 m (6 m²) ≈ Rp132.000.</p>
+      <p>Estimasi dari harga katalog resmi kami. Contoh: banner 2×3 m (6 m²) ≈ Rp132.000. Harga final dikonfirmasi PakTjip.</p>
     </div>
     <form class="calc" id="calc" novalidate>
       <div class="calc-field">
@@ -158,39 +208,44 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <label for="calc-qty">Jumlah</label>
         <input type="number" id="calc-qty" min="1" max="1000" step="1" value="1">
       </div>
-      <div class="calc-result glass" aria-live="polite">
+      <div class="calc-result" aria-live="polite">
         <span class="price-label">Estimasi</span>
         <strong class="calc-total" id="calc-total">—</strong>
-        <span class="calc-note" id="calc-note">Belum termasuk ongkir &amp; pemasangan.</span>
-        <a class="btn btn-block" id="calc-wa" href="#" target="_blank" rel="noopener">Lanjut ke WhatsApp</a>
+        <span class="calc-note" id="calc-note">*Cetak saja, belum termasuk pemasangan.</span>
+        <a class="btn" id="calc-wa" href="#" target="_blank" rel="noopener">Lanjut ke WhatsApp</a>
       </div>
     </form>
   </div>
 </section>
 
-<!-- ============ CARA ORDER ============ -->
-<section class="section" id="cara-order" aria-label="Cara order">
+<!-- TENTANG KAMI -->
+<section class="tentang" id="tentang">
   <div class="wrap">
-    <div class="sec-head sec-left">
-      <p class="eyebrow">Cara order</p>
-      <h2>Empat langkah, <em>langsung jadi</em></h2>
+    <div class="tentang-grid">
+      <div class="tentang-copy">
+        <h2>Dari Jampiroso, <em>untuk seluruh Indonesia</em></h2>
+        <p><?= nl2br(e($s['tentang_kami'])) ?></p>
+        <p class="sig">“Nek Ora PAKTJIP Ora”</p>
+      </div>
+      <div class="tentang-media">
+        <img class="big" src="<?= e($tentangBig) ?>" alt="Workshop PakTjip" loading="lazy" width="700" height="875">
+        <img class="small" src="<?= e($tentangSmall) ?>" alt="Detail hasil cetak" loading="lazy" width="400" height="400">
+      </div>
     </div>
-    <ol class="b2b-steps cara-steps">
-      <li class="reveal"><span class="step-n">01</span><div><h3>Chat WhatsApp</h3><p>Klik “Pesan” di produk — pesan terisi otomatis. Atau langsung ke <?= e($s['no_whatsapp']) ?>.</p></div></li>
-      <li class="reveal"><span class="step-n">02</span><div><h3>Konsultasi &amp; desain</h3><p>Kirim file desain atau ceritakan kebutuhan — dibantu sampai siap cetak.</p></div></li>
-      <li class="reveal"><span class="step-n">03</span><div><h3>Produksi</h3><p>Cetak di workshop Jampiroso. Umumnya 1–3 hari kerja sesuai pesanan.</p></div></li>
-      <li class="reveal"><span class="step-n">04</span><div><h3>Ambil atau kirim</h3><p>Ambil di workshop, atau ekspedisi ke seluruh Indonesia.</p></div></li>
-    </ol>
+    <div class="tentang-stats">
+      <div class="tstat"><strong>10+</strong><span>Tahun beroperasi</span></div>
+      <div class="tstat"><strong>2022</strong><span>Terdaftar e-procurement</span></div>
+      <div class="tstat"><strong>100%</strong><span>Produk dalam negeri</span></div>
+    </div>
   </div>
 </section>
 
-<!-- ============ B2B ============ -->
-<section class="section" id="b2b">
+<!-- B2B -->
+<section class="b2bsec" id="b2b">
   <div class="wrap b2b-grid">
-    <div class="sec-head sec-left">
-      <p class="eyebrow">Pengadaan resmi · B2B</p>
+    <div class="cats-head" style="margin:0">
       <h2>Terdaftar di <em>e-procurement</em> nasional</h2>
-      <p class="sec-sub">Untuk instansi, sekolah, dan perusahaan: order resmi melalui platform pengadaan, dengan katalog &amp; harga terdaftar.</p>
+      <p>Untuk instansi, sekolah, dan perusahaan: order resmi melalui platform pengadaan, dengan katalog &amp; harga terdaftar.</p>
       <div class="btn-row">
         <a class="btn btn-ghost" href="<?= e($s['link_mbizmarket']) ?>" target="_blank" rel="noopener">Katalog Mbizmarket</a>
         <a class="btn btn-ghost" href="<?= e($s['link_tisera']) ?>" target="_blank" rel="noopener">Katalog Tisera</a>
@@ -204,39 +259,30 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
 </section>
 
-<!-- ============ GALERI ============ -->
-<section class="section section-panel" id="galeri">
+<!-- GRAM STRIP -->
+<section class="gram" id="galeri">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Galeri portofolio</p>
-      <h2>Hasil cetak <em>bicara sendiri</em></h2>
-      <p class="sec-sub">Foto nyata dari workshop kami — undangan dan sign lasercut.</p>
+    <div class="gram-head">
+      <h2>Langsung dari <em>workshop kami</em></h2>
+      <p class="gram-hint">Geser untuk melihat →</p>
     </div>
-    <?php if ($galeri): ?>
-    <div class="galeri-grid">
-      <?php foreach ($galeri as $i => $g): if (!is_file(__DIR__ . $g['gambar'])) continue; ?>
-      <figure class="galeri-item reveal<?= $i % 7 === 0 ? ' wide' : '' ?>" data-cat="<?= e($g['kategori_slug'] ?? 'lainnya') ?>">
-        <img src="<?= e($g['gambar']) ?>" alt="<?= e($g['judul'] ?: 'Hasil cetak PakTjip') ?>" loading="lazy" width="1200" height="900">
-        <figcaption><?= e($g['judul'] ?: ($g['nama_kategori'] ?: 'PAKTJIP')) ?></figcaption>
+    <div class="gram-track">
+      <?php foreach ($galeri as $g): if (!is_file(__DIR__ . $g['gambar'])) continue; ?>
+      <figure class="gram-item">
+        <img src="<?= e($g['gambar']) ?>" alt="<?= e($g['judul'] ?: 'Hasil cetak PakTjip') ?>" loading="lazy" width="468" height="468">
       </figure>
       <?php endforeach; ?>
     </div>
-    <?php else: ?>
-    <div class="empty-note">Galeri menyusul — foto diisi dari admin panel.</div>
-    <?php endif; ?>
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
-<section class="section" id="faq">
-  <div class="wrap faq-wrap">
-    <div class="sec-head sec-left">
-      <p class="eyebrow">FAQ</p>
-      <h2>Sering <em>ditanya</em></h2>
-    </div>
+<!-- FAQ -->
+<section class="faqsec" id="faq">
+  <div class="wrap">
+    <div class="cats-head"><h2>Sering <em>ditanya</em></h2></div>
     <div class="faq-list">
       <?php foreach ($faq as $i => $f): ?>
-      <details class="faq-item reveal" <?= $i === 0 ? 'open' : '' ?>>
+      <details class="faq-item" <?= $i === 0 ? 'open' : '' ?>>
         <summary><span class="faq-n">0<?= $i + 1 ?></span><?= e($f['pertanyaan']) ?><span class="faq-x" aria-hidden="true"></span></summary>
         <div class="faq-a"><p><?= e($f['jawaban']) ?></p></div>
       </details>
@@ -245,11 +291,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
 </section>
 
-<!-- ============ KONTAK ============ -->
-<section class="section section-ink" id="kontak">
+<!-- KONTAK -->
+<section class="kontak" id="kontak">
   <div class="wrap kontak-grid">
-    <div class="sec-head sec-left">
-      <p class="eyebrow eyebrow-light">Kontak &amp; lokasi</p>
+    <div>
       <h2>Mampir ke <em>workshop</em></h2>
       <address class="kontak-addr"><?= e($s['alamat']) ?></address>
       <ul class="kontak-list">
@@ -259,7 +304,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </ul>
       <p class="open-state open-state-light" data-open-state data-hours="<?= e($s['jam_operasional']) ?>">
         <span class="dot <?= $isOpen ? 'on' : 'off' ?>" aria-hidden="true"></span>
-        <?= $isOpen ? 'Buka sekarang · ' . e(jam_label($s)) : 'Tutup · ' . e(jam_label($s)) ?>
+        <?= $isOpen ? 'Buka sekarang · Sen–Sab 08.00–17.30' : 'Tutup · Sen–Sab 08.00–17.30 · Minggu tutup' ?>
       </p>
     </div>
     <div class="kontak-map">
