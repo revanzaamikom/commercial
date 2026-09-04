@@ -167,6 +167,10 @@ button { font: inherit; cursor: pointer; }
 
 /* ---------- b2b ---------- */
 .b2bsec { padding: 80px 0; }
+.b2b-head { max-width: 560px; }
+.b2b-head h2 { font-family: var(--f-display); font-weight: 900; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; margin-bottom: 14px; }
+.b2b-head h2 em { font-style: italic; color: var(--gold-deep); }
+.b2b-head p { color: var(--muted); margin-bottom: 24px; }
 .b2b-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
 .b2b-steps { list-style: none; display: grid; border-top: 1px solid var(--line); }
 .b2b-steps li { display: flex; gap: 22px; padding: 26px 0; border-bottom: 1px solid var(--line); }

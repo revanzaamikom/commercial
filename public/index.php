@@ -37,8 +37,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Terdaftar e-Procurement Nasional</span><span>✦</span>
-    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Terdaftar e-Procurement Nasional</span><span>✦</span>
+    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Ready 1–3 Hari Kerja</span><span>✦</span>
+    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Ready 1–3 Hari Kerja</span><span>✦</span>
   </div>
 </div>
 
@@ -243,7 +243,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <!-- B2B -->
 <section class="b2bsec" id="b2b">
   <div class="wrap b2b-grid">
-    <div class="cats-head" style="margin:0">
+    <div class="b2b-head">
       <h2>Terdaftar di <em>e-procurement</em> nasional</h2>
       <p>Untuk instansi, sekolah, dan perusahaan: order resmi melalui platform pengadaan barang/jasa pemerintah dan swasta, dengan katalog &amp; harga terdaftar.</p>
       <div class="btn-row">
@@ -268,7 +268,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="gram-track">
       <?php foreach ($galeri as $g): if (!is_file(__DIR__ . $g['gambar'])) continue; ?>
       <figure class="gram-item">
-        <img src="<?= e($g['gambar']) ?>" alt="<?= e($g['judul'] ?: 'Hasil cetak PakTjip') ?>" loading="lazy" width="468" height="468">
+        <img src="<?= e($g['gambar']) ?>" alt="<?= e($g['judul'] ?: 'Hasil cetak PakTjip') ?>" width="468" height="468">
       </figure>
       <?php endforeach; ?>
     </div>
