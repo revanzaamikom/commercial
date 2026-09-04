@@ -141,7 +141,10 @@
       else backTop.classList.remove("show");
       lastY = y;
     }, { passive: true });
-    backTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+    backTop.addEventListener("click", function () {
+      var smooth = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+      window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+    });
   }
 
   if ("IntersectionObserver" in window) {

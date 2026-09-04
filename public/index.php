@@ -126,7 +126,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="sec-head sec-left">
       <p class="eyebrow">Kalkulator estimasi</p>
       <h2>Hitung dulu, <em>order kemudian</em></h2>
-      <p class="sec-sub">Estimasi kasar berdasarkan harga katalog resmi kami. Harga final dikonfirmasi PakTjip via WhatsApp.</p>
+      <p class="sec-sub">Estimasi kasar berdasarkan harga katalog resmi kami. Harga final dikonfirmasi PakTjip via WhatsApp. Contoh: banner 2×3 m (6 m²) ≈ Rp132.000.</p>
     </div>
     <form class="calc" id="calc" novalidate>
       <div class="calc-field">
