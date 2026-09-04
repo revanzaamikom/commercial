@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#181818"/>
-  <rect x="8" y="8" width="48" height="48" fill="#FFC72C"/>
-  <text x="32" y="46" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="36" text-anchor="middle" fill="#181818">P</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#181818"/><rect x="20" y="10" width="24" height="24" fill="#F5C518"/><path d="M26 12 h10 a8 8 0 0 1 0 16 h-10 z M26 28 v18 h6 V38 h4 a8 8 0 0 0 0 -16" fill="#181818"/><path d="M26 12 h10 a8 8 0 0 1 0 16 h-10 z" fill="none"/><text x="32" y="56" font-family="Arial, sans-serif" font-weight="900" font-size="13" text-anchor="middle" fill="#F5C518">PAKTJIP</text></svg>

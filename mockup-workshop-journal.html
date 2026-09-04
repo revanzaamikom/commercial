@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCKUP — PAKTJIP Workshop Journal (untuk approval, bukan final)</title>
+<!--
+  MOCKUP APPROVAL — arah: "Workshop Journal"
+  Fusi 3 referensi:
+  1. NFT art-gallery (user ref #1)  -> chrome editorial monokrom, hairline, display serif
+  2. CentralPrint (user ref #2)     -> katalog image-forward, cara order steps, trust strip
+  3. Bucini (user ref #3)           -> ticker marquee, kategori pakai FOTO, product card image-forward, gram strip
+  + keputusan user: foto banyak, layout TIDAK mengikuti referensi NFT, identitas monokrom+gold dilonggarkan
+  Perubahan vs landing sekarang:
+  - Hero split: teks kiri + foto besar kanan (bukan centered teks)
+  - Ticker marquee atas (Bucini)
+  - Kategori = kartu FOTO (Bucini), bukan pigment tile
+  - Katalog = kartu produk BERFOTO (nama+harga overlay), foto nyata dari Mbiz/Tisera
+  - TENTANG KAMI section baru dengan foto workshop
+  - Foto break full-width antar section
+  - Galeri "Gram strip" horizontal scroll ala Bucini Shop Gram
+  - Craft floor: eyebrow DIHAPUS (ban), section number DIHAPUS, glass card dikurangi
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,900;1,9..144,600;1,9..144,900&family=Anton&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFCFC; --panel:#F7F7F5; --ink:#111; --ink2:#2a2a2a; --muted:#5f6368;
+  --line:#E5E5E5; --gold:#FFC72C; --gold-deep:#7C5F04; --wa:#128C4B;
+  --f-display:"Fraunces",Georgia,serif; --f-num:"Anton",sans-serif; --f-body:"Figtree",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+::selection{background:var(--gold);color:var(--ink)}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:24px}
+section[id]{scroll-margin-top:100px}
+[hidden]{display:none!important}
+
+/* ---- ticker (Bucini device, gold on ink) ---- */
+.ticker{background:var(--ink);color:var(--gold);overflow:hidden;white-space:nowrap;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:9px 0}
+.ticker-track{display:inline-block;animation:tick 28s linear infinite}
+.ticker span{margin-inline:28px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+
+/* ---- header ---- */
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);font-size:12.5px}
+.topbar-in{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:9px}
+.topbar-badge{letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--ink2)}
+.open-state{display:inline-flex;align-items:center;gap:8px;font-weight:500}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--wa);display:inline-block}
+.dot.off{background:#c0c0bc}
+.nav{position:sticky;top:0;z-index:50;background:rgba(252,252,252,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{font-family:var(--f-display);font-weight:900;font-size:23px;letter-spacing:.04em;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.brand .dot{background:var(--gold)}
+.nav-menu{display:flex;align-items:center;gap:30px}
+.nav-menu a:not(.btn){text-decoration:none;font-weight:500;font-size:15px;color:var(--ink2);padding:11px 0}
+.nav-menu a:not(.btn):hover{color:var(--ink)}
+.nav-toggle{display:none}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:15.5px;padding:15px 30px;border:1px solid var(--ink);transition:.18s}
+.btn:hover{background:var(--ink2)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn-sm{padding:10px 18px;font-size:14px}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ HERO SPLIT — Workshop Journal ============ */
+.hero{display:grid;grid-template-columns:1fr 1.1fr;min-height:600px;border-bottom:1px solid var(--line)}
+.hero-copy{padding:72px 56px 72px 24px;display:flex;flex-direction:column;justify-content:center}
+.hero-copy .kicker-top{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:18px}
+.hero-copy h1{font-family:var(--f-display);font-weight:900;font-size:clamp(42px,5.2vw,72px);line-height:1.02;letter-spacing:-.015em;margin-bottom:20px}
+.hero-copy h1 em{font-style:italic;color:var(--gold-deep)}
+.hero-copy .lead{color:var(--muted);font-size:17.5px;max-width:44ch;margin-bottom:32px}
+.hero-copy .btn-row{margin-bottom:0}
+.hero-copy .wa-note{margin-top:16px;font-size:13.5px;color:var(--muted)}
+.hero-media{position:relative;min-height:480px}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-media .hero-frame{position:absolute;inset:18px;border:1px solid rgba(252,252,252,.55);pointer-events:none}
+.hero-media .hero-tag{position:absolute;left:34px;bottom:34px;background:rgba(17,17,17,.85);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:10px 16px}
+.hero-strip{display:grid;grid-template-columns:repeat(3,1fr);position:absolute;right:0;bottom:0;left:0}
+/* mini strip of 3 photos under hero copy (workshop proof) */
+.hero-proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:40px}
+.hero-proofs figure{aspect-ratio:4/3;overflow:hidden;background:var(--line)}
+.hero-proofs img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.hero-proofs figure:hover img{transform:scale(1.04)}
+
+/* ============ KATEGORI FOTO (Bucini device) ============ */
+.cats{padding:80px 0}
+.cats-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:36px}
+.cats-head h2{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,4vw,44px);line-height:1.08}
+.cats-head h2 em{font-style:italic;color:var(--gold-deep)}
+.cats-head p{color:var(--muted);max-width:38ch}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cat-card{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--ink);text-decoration:none;display:block}
+.cat-card img{width:100%;height:100%;object-fit:cover;opacity:.92;transition:transform .5s,opacity .3s}
+.cat-card:hover img{transform:scale(1.05);opacity:1}
+.cat-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.66));pointer-events:none}
+.cat-card .cat-label{position:absolute;left:18px;right:18px;bottom:18px;color:#fff;z-index:2}
+.cat-card .cat-label strong{display:block;font-family:var(--f-display);font-weight:600;font-size:21px;line-height:1.2;margin-bottom:4px}
+.cat-card .cat-label span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.cat-card .cat-pig{position:absolute;top:0;left:0;width:42px;height:6px;background:var(--pig,#FFC72C);z-index:2}
+
+/* ============ KATALOG image-forward ============ */
+.katalog{background:var(--panel);border-block:1px solid var(--line);padding:80px 0}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;padding:10px 16px;font-size:14px;font-weight:600;color:var(--ink2);transition:.15s}
+.chip:hover{border-color:var(--ink)}
+.chip.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip-pig{width:12px;height:12px;background:var(--pig,var(--gold))}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prod-card{position:relative;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.prod-card:hover{border-color:var(--ink);transform:translateY(-3px)}
+.prod-card.is-hidden{display:none}
+.prod-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--line)}
+.prod-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.prod-card:hover .prod-media img{transform:scale(1.04)}
+.prod-media .pig{position:absolute;top:0;left:0;width:46px;height:5px;background:var(--pig,var(--gold));z-index:2}
+.prod-media .status{position:absolute;top:12px;right:12px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(17,17,17,.82);color:#fff;padding:5px 9px;z-index:2}
+.prod-media .status.st-ready{color:#8fe6b5}
+.prod-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
+.prod-body h3{font-family:var(--f-display);font-weight:600;font-size:19px;line-height:1.18;margin-bottom:6px}
+.prod-body p{font-size:13.5px;color:var(--muted);flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod-price{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.prod-price .val{font-family:var(--f-num);font-weight:400;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.prod-price .val small{display:block;font-family:var(--f-body);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.prod-price .btn{flex:none}
+.prod-cta{margin-top:16px}
+
+/* ============ FOTO BREAK full width ============ */
+.fotobreak{position:relative;min-height:420px;display:grid;place-items:center;text-align:center;overflow:hidden}
+.fotobreak img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fotobreak::after{content:"";position:absolute;inset:0;background:rgba(17,17,17,.55)}
+.fotobreak .fb-inner{position:relative;z-index:2;color:#fff;padding:64px 24px;max-width:720px}
+.fotobreak h2{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,4.4vw,52px);line-height:1.1;margin-bottom:14px}
+.fotobreak h2 em{font-style:italic;color:var(--gold)}
+.fotobreak p{color:#e4e1d8;font-size:17px;margin-bottom:26px}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#eab514}
+
+/* ============ KALKULATOR (order slip) ============ */
+.calc-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start;padding:80px 0}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.calc-field{display:flex;flex-direction:column;gap:8px}
+.calc-field label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.calc select,.calc input{font:inherit;padding:13px 14px;border:1px solid var(--ink);background:#fff;width:100%;border-radius:0}
+.calc-result{grid-column:1/-1;border:1px solid var(--ink);background:#fff;padding:24px;display:grid;grid-template-columns:1fr auto;gap:4px 20px;align-items:center}
+.calc-total{font-family:var(--f-num);font-weight:400;font-size:42px;font-variant-numeric:tabular-nums;grid-row:2}
+.calc-note{grid-column:2;grid-row:2;font-size:12.5px;color:var(--muted);max-width:220px;text-align:right;align-self:end}
+.calc-result .btn{grid-column:1/-1;margin-top:10px}
+
+/* ============ TENTANG (workshop journal) ============ */
+.tentang{padding:88px 0;border-bottom:1px solid var(--line)}
+.tentang-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.tentang-copy h2{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,4.2vw,48px);line-height:1.08;margin-bottom:18px}
+.tentang-copy h2 em{font-style:italic;color:var(--gold-deep)}
+.tentang-copy p{color:var(--ink2);margin-bottom:14px;max-width:56ch}
+.tentang-copy .sig{font-family:var(--f-display);font-style:italic;font-size:19px;color:var(--gold-deep);margin-top:22px}
+.tentang-media{position:relative}
+.tentang-media .big{aspect-ratio:4/5;object-fit:cover;width:100%}
+.tentang-media .small{position:absolute;right:-18px;bottom:-18px;width:46%;aspect-ratio:1;object-fit:cover;border:6px solid var(--paper)}
+.tentang-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);margin-top:56px}
+.tstat{padding:24px;border-right:1px solid var(--line);text-align:center}
+.tstat:last-child{border-right:0}
+.tstat strong{font-family:var(--f-num);font-weight:400;font-size:30px;display:block}
+.tstat span{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ============ GRAM STRIP (Bucini device) ============ */
+.gram{padding:80px 0;overflow:hidden}
+.gram-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:28px}
+.gram-head h2{font-family:var(--f-display);font-weight:900;font-size:clamp(28px,3.6vw,40px)}
+.gram-head h2 em{font-style:italic;color:var(--gold-deep)}
+.gram-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+.gram-item{flex:0 0 234px;aspect-ratio:1;overflow:hidden;scroll-snap-align:start;background:var(--line)}
+.gram-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gram-item:hover img{transform:scale(1.05)}
+
+/* ============ FAQ + KONTAK ============ */
+.faqsec{padding:80px 0;background:var(--panel);border-block:1px solid var(--line)}
+.faq-list{max-width:800px;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;display:flex;align-items:baseline;gap:20px;padding:22px 4px;cursor:pointer;font-weight:700;font-size:17px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-n{font-family:var(--f-num);font-weight:400;color:var(--gold-deep)}
+.faq-a{padding:0 4px 24px 58px;color:var(--muted);max-width:620px}
+.kontak{background:var(--ink);color:#f4f2ec;padding:80px 0}
+.kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.kontak h2{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,4vw,46px);margin-bottom:18px}
+.kontak h2 em{font-style:italic;color:var(--gold)}
+.kontak-addr{font-style:normal;margin-bottom:16px;color:#d8d5cc}
+.kontak-list{list-style:none;display:grid;gap:10px;margin-bottom:22px}
+.kontak-list a{color:#f4f2ec;text-decoration:none;border-bottom:1px solid var(--gold)}
+.kontak-map iframe{width:100%;height:360px;border:0;filter:grayscale(1) invert(.92) contrast(.9)}
+.footer-base{background:var(--ink);color:#8a8a86;border-top:1px solid #2a2a2a;font-size:12.5px;padding:18px 0}
+.footer-base .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---- responsive ---- */
+@media (max-width:1024px){
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:56px 24px 40px}
+  .hero-media{min-height:420px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .calc-wrap,.tentang-grid,.kontak-grid{grid-template-columns:1fr;gap:40px}
+  .tentang-media .small{right:0;bottom:-14px}
+}
+@media (max-width:720px){
+  .prod-grid,.cat-grid{grid-template-columns:1fr 1fr}
+  .hero-proofs{grid-template-columns:repeat(3,1fr)}
+  .tstats{grid-template-columns:1fr}
+  .tstat{border-right:0;border-bottom:1px solid var(--line)}
+  .calc{grid-template-columns:1fr}
+  .gram-item{flex-basis:172px}
+  .nav-toggle{display:flex;background:none;border:1px solid var(--line);width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+  .nav-toggle span{width:18px;height:2px;background:var(--ink)}
+  .nav-menu{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 24px 20px}
+  .nav-menu.is-open{display:flex}
+  .nav-menu a:not(.btn){padding:13px 0;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Terdaftar e-Procurement Nasional</span><span>✦</span>
+    <span>Nek Ora PAKTJIP Ora</span><span>✦</span><span>Stempel · Banner · Undangan · Lasercut</span><span>✦</span><span>Terdaftar e-Procurement Nasional</span><span>✦</span>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <span class="open-state"><span class="dot" aria-hidden="true"></span> Buka sekarang · Sen–Sab 08.00–17.30</span>
+    <span class="topbar-badge">Terdaftar e-Procurement · Mbizmarket · Tisera</span>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#">PAKTJIP<span class="dot"></span></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span></button>
+    <div class="nav-menu">
+      <a href="#katalog">Katalog</a>
+      <a href="#kalkulator">Estimasi</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-sm" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan via WA</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SPLIT -->
+<section class="hero">
+  <div class="hero-copy">
+    <p class="kicker-top">One-stop digital printing · Temanggung</p>
+    <h1>Nek Ora PAKTJIP <em>Ora</em></h1>
+    <p class="lead">Cetak digital, stempel, banner, undangan, sablon &amp; lasercut — dari pesanan satuan sampai pengadaan instansi. Dikerjakan di workshop kami di Jampiroso.</p>
+    <div class="btn-row">
+      <a class="btn" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan via WhatsApp</a>
+      <a class="btn btn-ghost" href="#katalog">Lihat Katalog</a>
+    </div>
+    <p class="wa-note">Dibalas langsung oleh tim workshop — bukan bot.</p>
+    <div class="hero-proofs">
+      <figure><img src="/public/assets/uploads/lasercut-lasercut-003.webp" alt="Hasil lasercut akrilik"></figure>
+      <figure><img src="/public/assets/uploads/undangan-raffa-undangan-raffa-002.webp" alt="Katalog undangan"></figure>
+      <figure><img src="/public/assets/uploads/p/tisera-kain-bendera-ukuran-50x40.webp" alt="Bendera custom"></figure>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="/public/assets/uploads/lasercut-lasercut-001.webp" alt="Hasil cetak PakTjip">
+    <div class="hero-frame" aria-hidden="true"></div>
+    <span class="hero-tag">Workshop · Jl. Jampiroso Utara 196B</span>
+  </div>
+</section>
+
+<!-- KATEGORI FOTO -->
+<section class="cats">
+  <div class="wrap">
+    <div class="cats-head">
+      <h2>Mulai dari <em>yang kamu butuh</em></h2>
+      <p>Empat lini produksi, satu workshop. Klik kategori untuk melompat ke katalog.</p>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card" href="#katalog" style="--pig:#FFC72C">
+        <img src="/public/assets/uploads/p/mbiz-banner-fl280gr-6x3.webp" alt="Banner & outdoor">
+        <span class="cat-pig"></span>
+        <span class="cat-label"><strong>Banner &amp; Outdoor</strong><span>10+ produk</span></span>
+      </a>
+      <a class="cat-card" href="#katalog" style="--pig:#E4572E">
+        <img src="/public/assets/uploads/p/tisera-stempel.webp" alt="Stempel & administrasi">
+        <span class="cat-pig"></span>
+        <span class="cat-label"><strong>Stempel &amp; Administrasi</strong><span>10+ produk</span></span>
+      </a>
+      <a class="cat-card" href="#katalog" style="--pig:#2E86AB">
+        <img src="/public/assets/uploads/p/tisera-tumbler-plastik.webp" alt="Merchandise & custom">
+        <span class="cat-pig"></span>
+        <span class="cat-label"><strong>Merchandise &amp; Custom</strong><span>10+ produk</span></span>
+      </a>
+      <a class="cat-card" href="#katalog" style="--pig:#7B2FBF">
+        <img src="/public/assets/uploads/undangan-cr7-undangan-cr7-004.webp" alt="Undangan & lasercut">
+        <span class="cat-pig"></span>
+        <span class="cat-label"><strong>Undangan &amp; Lasercut</strong><span>80+ desain</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KATALOG image-forward -->
+<section class="katalog" id="katalog">
+  <div class="wrap">
+    <div class="cats-head">
+      <h2>Semua yang bisa dicetak, <em>siap order</em></h2>
+      <p>Harga “mulai dari” dari katalog resmi Mbizmarket &amp; Tisera. Klik produk — WhatsApp terbuka dengan pesan terisi.</p>
+    </div>
+    <div class="filters" role="tablist" aria-label="Filter kategori">
+      <button class="chip is-active" data-filter="all">Semua</button>
+      <button class="chip" data-filter="banner-outdoor"><span class="chip-pig" style="--pig:#FFC72C"></span>Banner &amp; Outdoor</button>
+      <button class="chip" data-filter="stempel-administrasi"><span class="chip-pig" style="--pig:#E4572E"></span>Stempel &amp; Administrasi</button>
+      <button class="chip" data-filter="merchandise-custom"><span class="chip-pig" style="--pig:#2E86AB"></span>Merchandise &amp; Custom</button>
+      <button class="chip" data-filter="undangan-lasercut"><span class="chip-pig" style="--pig:#7B2FBF"></span>Undangan &amp; Lasercut</button>
+    </div>
+    <div class="prod-grid" id="prodgrid">
+      <!-- sampel 8 kartu dengan FOTO NYATA -->
+      <article class="prod-card" data-cat="banner-outdoor" style="--pig:#FFC72C">
+        <div class="prod-media"><img src="/public/assets/uploads/p/mbiz-banner-fl280gr-6x3.webp" alt="Banner FL280gr 6x3 m"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Banner FL280gr</h3>
+          <p>Flexi 280gr full color, semua ukuran custom, cocok promosi &amp; event.</p>
+          <div class="prod-price"><span class="val"><small>Mulai dari</small>Rp22.032/m²</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="banner-outdoor" style="--pig:#FFC72C">
+        <div class="prod-media"><img src="/public/assets/uploads/p/tisera-baliho.webp" alt="Baliho + pasang"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Baliho + Pasang</h3>
+          <p>Baliho besar lengkap dengan jasa pemasangan di titik lokasi Anda.</p>
+          <div class="prod-price"><span class="val"><small>Mulai dari</small>Rp755.000</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="stempel-administrasi" style="--pig:#E4572E">
+        <div class="prod-media"><img src="/public/assets/uploads/p/tisera-stempel.webp" alt="Stempel flash"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Stempel Flash</h3>
+          <p>Cepat &amp; rapi, ribuan impression. Bisa desain sendiri atau dibantu.</p>
+          <div class="prod-price"><span class="val"><small>Per pcs</small>Rp150.000</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="stempel-administrasi" style="--pig:#E4572E">
+        <div class="prod-media"><img src="/public/assets/uploads/p/mbiz-co-card-id-card-id-card.webp" alt="ID card"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>ID Card PVC</h3>
+          <p>Full color untuk karyawan, anggota &amp; event. Opsi tali/lanyard.</p>
+          <div class="prod-price"><span class="val"><small>Per pcs</small>Rp15.000</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="merchandise-custom" style="--pig:#2E86AB">
+        <div class="prod-media"><img src="/public/assets/uploads/p/tisera-tumbler-plastik.webp" alt="Tumbler custom"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Tumbler Custom</h3>
+          <p>Sablon/printing untuk merchandise &amp; hampers, logo bebas.</p>
+          <div class="prod-price"><span class="val"><small>Mulai dari</small>Rp17.000</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="merchandise-custom" style="--pig:#2E86AB">
+        <div class="prod-media"><img src="/public/assets/uploads/p/tisera-plakat-akrilik.webp" alt="Plakat akrilik"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Plakat Akrilik</h3>
+          <p>Penghargaan custom untuk wisuda, seminar &amp; event instansi.</p>
+          <div class="prod-price"><span class="val"><small>Mulai dari</small>Rp175.000</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="undangan-lasercut" style="--pig:#7B2FBF">
+        <div class="prod-media"><img src="/public/assets/uploads/undangan-griya-silver-undangan-griya-silver-006.webp" alt="Undangan custom"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Undangan Custom</h3>
+          <p>Katalog lengkap: CR7, Raffa, Griya Silver, Avis, Lite — pernikahan &amp; acara.</p>
+          <div class="prod-price"><span class="val"><small>Harga</small>Tanya via WA</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+      <article class="prod-card" data-cat="undangan-lasercut" style="--pig:#7B2FBF">
+        <div class="prod-media"><img src="/public/assets/uploads/lasercut-lasercut-002.webp" alt="Sign lasercut"><span class="status st-ready">Ready</span><span class="pig"></span></div>
+        <div class="prod-body">
+          <h3>Sign Lasercut</h3>
+          <p>Papan nama &amp; hiasan lasercut presisi dari akrilik/kayu.</p>
+          <div class="prod-price"><span class="val"><small>Harga</small>Tanya via WA</span><a class="btn btn-sm btn-ghost" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Pesan</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO BREAK -->
+<section class="fotobreak">
+  <img src="/public/assets/uploads/p/mbiz-banner-fl280gr-5x2-5.webp" alt="Banner besar terpasang">
+  <div class="fb-inner">
+    <h2>Butuh hari ini <em>nggak bisa nunggu?</em></h2>
+    <p>Chat dulu — kalau slot produksi kosong, order kamu diproses hari itu juga.</p>
+    <a class="btn btn-gold" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Cek Slot Hari Ini</a>
+  </div>
+</section>
+
+<!-- KALKULATOR -->
+<section id="kalkulator">
+  <div class="wrap calc-wrap">
+    <div class="cats-head" style="margin:0">
+      <h2>Hitung dulu, <em>order kemudian</em></h2>
+      <p>Estimasi dari harga katalog resmi kami. Contoh: banner 2×3 m (6 m²) ≈ Rp132.000. Harga final dikonfirmasi PakTjip.</p>
+    </div>
+    <form class="calc" onsubmit="return false">
+      <div class="calc-field">
+        <label for="mk-prod">Produk</label>
+        <select id="mk-prod">
+          <option value="banner|m2|22032">Banner — Rp22.032/m²</option>
+          <option value="stempel|pcs|150000">Stempel Flash — Rp150rb</option>
+          <option value="idcard|pcs|15000">ID Card — Rp15rb</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label for="mk-qty">Jumlah</label>
+        <input type="number" id="mk-qty" value="1" min="1">
+      </div>
+      <div class="calc-result">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600">Estimasi</span>
+        <strong class="calc-total" id="mk-total">Rp132.192</strong>
+        <span class="calc-note">*Cetak saja, belum termasuk pemasangan.</span>
+        <a class="btn" href="https://wa.me/6282137215808" target="_blank" rel="noopener">Lanjut ke WhatsApp</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- TENTANG KAMI (baru) -->
+<section class="tentang" id="tentang">
+  <div class="wrap">
+    <div class="tentang-grid">
+      <div class="tentang-copy">
+        <h2>Dari Jampiroso, <em>untuk seluruh Indonesia</em></h2>
+        <p>PAKTJIP Stempel &amp; Digiprint adalah one-stop digital printing di Temanggung, Jawa Tengah. Berpengalaman belasan tahun melayani cetak digital, stempel, banner, sablon, undangan, hingga sign lasercut — dari kebutuhan personal sampai pengadaan instansi.</p>
+        <p>Sejak 2022 kami terdaftar resmi di platform e-procurement nasional Mbizmarket &amp; Tisera dengan badge Produk Dalam Negeri. Order lewat WhatsApp dibalas langsung oleh tim workshop — bukan bot.</p>
+        <p class="sig">“Nek Ora PAKTJIP Ora”</p>
+      </div>
+      <div class="tentang-media">
+        <img class="big" src="/public/assets/uploads/lasercut-lasercut-008.webp" alt="Workshop PakTjip">
+        <img class="small" src="/public/assets/uploads/undangan-avis-undangan-avis-003.webp" alt="Detail undangan">
+      </div>
+    </div>
+    <div class="tentang-stats">
+      <div class="tstat"><strong>10+</strong><span>Tahun beroperasi</span></div>
+      <div class="tstat"><strong>2022</strong><span>Terdaftar e-procurement</span></div>
+      <div class="tstat"><strong>100%</strong><span>Produk dalam negeri</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAM STRIP -->
+<section class="gram" id="galeri">
+  <div class="wrap">
+    <div class="gram-head">
+      <h2>Langsung dari <em>workshop kami</em></h2>
+      <p style="color:var(--muted)">Geser untuk melihat →</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="gram-track">
+      <figure class="gram-item"><img src="/public/assets/uploads/lasercut-lasercut-004.webp" alt="Lasercut 1"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/undangan-cr7-undangan-cr7-008.webp" alt="Undangan CR7"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/p/tisera-kain-bendera-ukuran-300x200s2xl.webp" alt="Bendera besar"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/undangan-raffa-undangan-raffa-010.webp" alt="Undangan Raffa"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/lasercut-lasercut-010.webp" alt="Lasercut 2"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/undangan-lite-undangan-lite-004.webp" alt="Undangan Lite"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/p/mbiz-papan-nama-akrilik-neon-box-custom.webp" alt="Neon box"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/undangan-avis-undangan-avis-011.webp" alt="Undangan Avis"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/p/tisera-plakat-akrilik-paperbagvj.webp" alt="Plakat & paperbag"></figure>
+      <figure class="gram-item"><img src="/public/assets/uploads/undangan-griya-silver-undangan-griya-silver-012.webp" alt="Griya Silver"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faqsec" id="faq">
+  <div class="wrap">
+    <div class="cats-head"><h2>Sering <em>ditanya</em></h2></div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span class="faq-n">01</span>Berapa lama proses pengerjaan?<span style="margin-left:auto">+</span></summary>
+        <div class="faq-a"><p>Umumnya 1–3 hari kerja untuk banner dan stempel, tergantung jumlah &amp; tingkat kesulitan. Order besar bisa didiskusikan langsung via WhatsApp.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-n">02</span>Bisa dibantu desain?<span style="margin-left:auto">+</span></summary>
+        <div class="faq-a"><p>Bisa. Kirim ide atau contoh yang kamu suka, tim PakTjip bantu susun desainnya sampai siap cetak.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-n">03</span>Ada minimal order?<span style="margin-left:auto">+</span></summary>
+        <div class="faq-a"><p>Untuk stempel, ID card, dan undangan tidak ada minimal order — 1 pcs jadi. Untuk sablon &amp; merchandise tertentu berlaku minimal sesuai produk.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="faq-n">04</span>Bisa kirim ke luar kota?<span style="margin-left:auto">+</span></summary>
+        <div class="faq-a"><p>Bisa. Pesanan dikirim via ekspedisi ke seluruh Indonesia. Untuk area Temanggung &amp; sekitarnya bisa COD/diambil langsung.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section class="kontak" id="kontak">
+  <div class="wrap kontak-grid">
+    <div>
+      <h2>Mampir ke <em>workshop</em></h2>
+      <address class="kontak-addr">Jl. Jampiroso Utara No. 196B, Kel. Jampiroso, Kec. Temanggung, Kab. Temanggung, Jawa Tengah</address>
+      <ul class="kontak-list">
+        <li><a href="https://wa.me/6282137215808" target="_blank" rel="noopener">WA 0821 3721 5808</a></li>
+        <li><a href="mailto:stempelpaktjip@gmail.com">stempelpaktjip@gmail.com</a></li>
+        <li><a href="#">@paktjip_digital_printing</a></li>
+      </ul>
+      <p class="open-state" style="color:#d8d5cc;font-size:14px"><span class="dot"></span> Buka sekarang · Sen–Sab 08.00–17.30</p>
+    </div>
+    <div class="kontak-map">
+      <iframe title="Lokasi PAKTJIP" src="https://www.google.com/maps?q=Jl.%20Jampiroso%20Utara%20No.%20196B%20Temanggung&amp;output=embed" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="footer-base">
+  <div class="wrap"><span>© 2026 CV PakTjip Digital Printing</span><span>Terdaftar e-Procurement · Mbizmarket · Tisera</span></div>
+</div>
+
+<script>
+// filter demo
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>{x.classList.remove("is-active");x.setAttribute("aria-selected","false")});
+  c.classList.add("is-active");
+  const f=c.dataset.filter;
+  document.querySelectorAll(".prod-card").forEach(p=>p.classList.toggle("is-hidden",f!=="all"&&p.dataset.cat!==f));
+}));
+// nav demo
+const t=document.querySelector(".nav-toggle"),m=document.querySelector(".nav-menu");
+if(t)t.addEventListener("click",()=>m.classList.toggle("is-open"));
+</script>
+</body>
+</html>
