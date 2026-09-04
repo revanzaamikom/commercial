@@ -1,0 +1,9 @@
+# Kill PHP execution in upload dir
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|phar)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phar

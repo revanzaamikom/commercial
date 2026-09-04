@@ -110,11 +110,9 @@ function json_ld(array $s, array $faq): string {
         'url' => 'https://paktjip.com',
         'openingHoursSpecification' => $spec,
         'priceRange' => 'Rp3.000 - Rp8.100.000',
-        'sameAs' => array_values(array_filter([
-            $s['link_mbizmarket'] ?: null,
-            $s['link_tisera'] ?: null,
+        'sameAs' => [
             'https://www.instagram.com/paktjip_digital_printing/',
-        ])),
+        ],
     ];
     $ld['@graph'] = [[
         '@type' => 'FAQPage',

@@ -7,7 +7,7 @@
 <title>PAKTJIP Stempel &amp; Digiprint — Cetak Digital, Stempel, Banner &amp; Merchandise Temanggung</title>
 <meta name="description" content="Nek Ora PAKTJIP Ora. One-stop digital printing di Temanggung: stempel, banner, ID card, undangan, sablon & lasercut. Terdaftar e-procurement nasional. Pesan via WhatsApp.">
 <meta property="og:title" content="PAKTJIP Stempel & Digiprint — Nek Ora PAKTJIP Ora">
-<meta property="og:description" content="One-stop digital printing Temanggung. Terdaftar e-procurement Mbizmarket & Tisera sejak 2022. Pesan via WhatsApp.">
+<meta property="og:description" content="One-stop digital printing Temanggung. Terdaftar e-procurement nasional. Pesan via WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/assets/paktjip-og.png">
 <meta name="theme-color" content="#181818">

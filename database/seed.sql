@@ -42,8 +42,7 @@ INSERT INTO pengaturan_toko
  'https://www.mbizmarket.co.id/p/paktjip',
  'https://tisera.id/produk/show/paktjip-digital-printing-20250322092356',
  'https://g.co/kgs/4F9mae',
- 'PAKTJIP Stempel & Digiprint adalah one-stop digital printing di Temanggung, Jawa Tengah. Berpengalaman belasan tahun melayani cetak digital, stempel, banner, sablon, undangan, hingga sign lasercut — dari kebutuhan personal sampai pengadaan instansi lewat e-procurement nasional (Mbizmarket & Tisera, terdaftar sejak 2022).');
+ 'PAKTJIP Stempel & Digiprint adalah one-stop digital printing di Temanggung, Jawa Tengah. Berpengalaman belasan tahun melayani cetak digital, stempel, banner, sablon, undangan, hingga sign lasercut — dari kebutuhan personal sampai pengadaan instansi lewat e-procurement nasional.',
 
--- admin default: username admin / password admin123 (WAJIB diganti) — hash dibuat saat setup admin
-INSERT INTO admin (username, password) VALUES
-('admin', '$2y$10$e0NRzXkVXQK7QpVuG3sOeeZ0kqXFFqvNJlC1GTcbQLYDnMceS8cDa'); -- admin123
+-- Admin TIDAK di-seed di sini. Jalankan tools/setup-admin.php sekali untuk membuat akun admin
+-- (password di-hash runtime, tidak pernah tersimpan plaintext/hash di repo).

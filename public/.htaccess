@@ -1,0 +1,4 @@
+Options -Indexes
+<FilesMatch "\.(sql|md|json|lock|ini)$">
+  Require all denied
+</FilesMatch>

@@ -48,7 +48,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <span class="dot <?= $isOpen ? 'on' : 'off' ?>" aria-hidden="true"></span>
       <?= $isOpen ? 'Buka sekarang · Sen–Sab 08.00–17.30' : 'Tutup — buka 08.00' ?>
     </span>
-    <span class="topbar-badge">Terdaftar e-Procurement · Mbizmarket · Tisera</span>
+    <span class="topbar-badge">Terdaftar e-Procurement Nasional</span>
   </div>
 </header>
 
@@ -123,7 +123,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="wrap">
     <div class="cats-head">
       <h2>Semua yang bisa dicetak, <em>siap order</em></h2>
-      <p>Harga “mulai dari” dari katalog resmi kami di Mbizmarket &amp; Tisera. Klik produk — WhatsApp terbuka dengan pesan terisi.</p>
+      <p>Harga “mulai dari” dari katalog resmi kami. Klik produk — WhatsApp terbuka dengan pesan terisi.</p>
     </div>
     <div class="filters" role="tablist" aria-label="Filter kategori">
       <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">Semua</button>
@@ -245,14 +245,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="wrap b2b-grid">
     <div class="cats-head" style="margin:0">
       <h2>Terdaftar di <em>e-procurement</em> nasional</h2>
-      <p>Untuk instansi, sekolah, dan perusahaan: order resmi melalui platform pengadaan, dengan katalog &amp; harga terdaftar.</p>
+      <p>Untuk instansi, sekolah, dan perusahaan: order resmi melalui platform pengadaan barang/jasa pemerintah dan swasta, dengan katalog &amp; harga terdaftar.</p>
       <div class="btn-row">
-        <a class="btn btn-ghost" href="<?= e($s['link_mbizmarket']) ?>" target="_blank" rel="noopener">Katalog Mbizmarket</a>
-        <a class="btn btn-ghost" href="<?= e($s['link_tisera']) ?>" target="_blank" rel="noopener">Katalog Tisera</a>
+        <a class="btn btn-ghost" href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, kami dari instansi/perusahaan, mau tanya pengadaan lewat e-procurement.')) ?>" target="_blank" rel="noopener">Konsultasi Pengadaan</a>
       </div>
     </div>
     <ol class="b2b-steps">
-      <li class="reveal"><span class="step-n">01</span><div><h3>Temukan kami</h3><p>Cari “PakTjip Digital Printing” di Mbizmarket atau Tisera — badan usaha resmi, katalog lengkap.</p></div></li>
+      <li class="reveal"><span class="step-n">01</span><div><h3>Order lewat platform</h3><p>Pesanan pengadaan diproses sesuai ketentuan platform e-procurement yang Anda gunakan — badan usaha resmi, katalog lengkap.</p></div></li>
       <li class="reveal"><span class="step-n">02</span><div><h3>Order terdaftar</h3><p>Pesan lewat platform sesuai ketentuan pengadaan — produk dengan badge PDN, status READY.</p></div></li>
       <li class="reveal"><span class="step-n">03</span><div><h3>Cetak &amp; terima</h3><p>Proses di workshop Temanggung, dikirim ke lokasi Anda. Bisa konsultasi dulu via WhatsApp.</p></div></li>
     </ol>

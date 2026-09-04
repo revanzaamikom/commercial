@@ -15,10 +15,10 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Platform</h4>
+      <h4>Katalog Resmi</h4>
       <ul>
-        <li><a href="<?= e($s['link_mbizmarket']) ?>" target="_blank" rel="noopener">Mbizmarket</a></li>
-        <li><a href="<?= e($s['link_tisera']) ?>" target="_blank" rel="noopener">Tisera</a></li>
+        <li><a href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip, saya mau minta katalog lengkap.')) ?>" target="_blank" rel="noopener">Minta Katalog via WA</a></li>
+        <li><a href="#katalog">Katalog di Website Ini</a></li>
       </ul>
     </div>
     <div class="f-col">
@@ -31,7 +31,7 @@
   </div>
   <div class="wrap footer-base">
     <span>© <?= date('Y') ?> CV PakTjip Digital Printing</span>
-    <span>Terdaftar e-Procurement · Mbizmarket · Tisera</span>
+    <span>Terdaftar e-Procurement Nasional</span>
   </div>
 </footer>
 <script src="/assets/js/main.js" defer></script>
