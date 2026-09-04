@@ -88,7 +88,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
   <div class="hero-media">
     <img src="<?= e($heroPhoto) ?>" alt="Hasil cetak di workshop PakTjip" width="900" height="1100">
-    <div class="hero-frame" aria-hidden="true"></div>
     <span class="hero-tag">Workshop · Jl. Jampiroso Utara 196B</span>
   </div>
 </section>
@@ -292,22 +291,24 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 <!-- KONTAK -->
 <section class="kontak" id="kontak">
-  <div class="wrap kontak-grid">
-    <div>
-      <h2>Mampir ke <em>workshop</em></h2>
-      <address class="kontak-addr"><?= e($s['alamat']) ?></address>
-      <ul class="kontak-list">
-        <li><a href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip!')) ?>" target="_blank" rel="noopener">WA <?= e($s['no_whatsapp']) ?></a></li>
-        <li><a href="mailto:<?= e($s['email']) ?>"><?= e($s['email']) ?></a></li>
-        <li><a href="https://www.instagram.com/paktjip_digital_printing/" target="_blank" rel="noopener"><?= e($s['instagram']) ?></a></li>
-      </ul>
-      <p class="open-state open-state-light" data-open-state data-hours="<?= e($s['jam_operasional']) ?>">
-        <span class="dot <?= $isOpen ? 'on' : 'off' ?>" aria-hidden="true"></span>
-        <?= $isOpen ? 'Buka sekarang · Sen–Sab 08.00–17.30' : 'Tutup · Sen–Sab 08.00–17.30 · Minggu tutup' ?>
-      </p>
-    </div>
-    <div class="kontak-map">
-      <iframe title="Lokasi PAKTJIP di Google Maps" src="https://www.google.com/maps?q=Jl.%20Jampiroso%20Utara%20No.%20196B%20Temanggung&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <div class="wrap">
+    <div class="kontak-card">
+      <div>
+        <h2>Mampir ke <em>workshop</em></h2>
+        <address class="kontak-addr"><?= e($s['alamat']) ?></address>
+        <ul class="kontak-list">
+          <li><a href="<?= e(wa_order_link($s['no_whatsapp'], 'Halo PakTjip!')) ?>" target="_blank" rel="noopener">WA <?= e($s['no_whatsapp']) ?></a></li>
+          <li><a href="mailto:<?= e($s['email']) ?>"><?= e($s['email']) ?></a></li>
+          <li><a href="https://www.instagram.com/paktjip_digital_printing/" target="_blank" rel="noopener"><?= e($s['instagram']) ?></a></li>
+        </ul>
+        <p class="open-state open-state-light" data-open-state data-hours="<?= e($s['jam_operasional']) ?>">
+          <span class="dot <?= $isOpen ? 'on' : 'off' ?>" aria-hidden="true"></span>
+          <?= $isOpen ? 'Buka sekarang · Sen–Sab 08.00–17.30' : 'Tutup · Sen–Sab 08.00–17.30 · Minggu tutup' ?>
+        </p>
+      </div>
+      <div class="kontak-map">
+        <iframe title="Lokasi PAKTJIP di Google Maps" src="https://www.google.com/maps?q=Jl.%20Jampiroso%20Utara%20No.%20196B%20Temanggung&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </section>
