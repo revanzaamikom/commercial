@@ -8,7 +8,7 @@
   --muted: #6b7280;
   --line: #e5e5e5;
   --gold: #ffc72c;
-  --gold-deep: #c8a21f;
+  --gold-deep: #7C5F04; /* text on light bg — WCAG AA ≥4.5:1 */
   --wa: #128c4b;
   --ok: #128c4b;
   --glass: rgba(255, 255, 255, 0.82);
@@ -62,7 +62,7 @@ button { font: inherit; cursor: pointer; }
 .nav-in { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 .brand { font-family: var(--font-display); font-weight: 900; font-size: 22px; letter-spacing: 0.04em; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
 .nav-menu { display: flex; align-items: center; gap: 32px; }
-.nav-menu a:not(.btn) { text-decoration: none; font-weight: 500; font-size: 15px; color: var(--ink-soft); }
+.nav-menu a:not(.btn) { text-decoration: none; font-weight: 500; font-size: 15px; color: var(--ink-soft); padding: 11px 0; }
 .nav-menu a:not(.btn):hover { color: var(--ink); }
 .nav-toggle { display: none; background: none; border: 1px solid var(--line); width: 42px; height: 42px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
 .nav-toggle span { width: 18px; height: 2px; background: var(--ink); transition: 0.2s; }
@@ -190,6 +190,15 @@ button { font: inherit; cursor: pointer; }
 .calc-note { grid-column: 2; grid-row: 2; font-size: 12.5px; color: var(--muted); max-width: 220px; text-align: right; align-self: end; }
 .calc-result .btn { grid-column: 1 / -1; margin-top: 10px; }
 .calc-total::after { content: "*"; color: var(--gold-deep); font-size: 0.6em; vertical-align: super; }
+/* back to top */
+.back-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 60;
+  width: 48px; height: 48px; background: var(--ink); color: #fff;
+  border: none; cursor: pointer; display: grid; place-items: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.back-top.show { opacity: 1; pointer-events: auto; }
+.back-top::before { content: "↑"; font-size: 22px; }
 .cara-steps { border-top: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
 .cara-steps li { flex-direction: column; align-items: flex-start; gap: 12px; border-bottom: 0; border-right: 1px solid var(--line); padding: 8px 22px; }
 .cara-steps li:first-child { padding-left: 0; }

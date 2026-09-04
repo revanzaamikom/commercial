@@ -35,5 +35,6 @@
   </div>
 </footer>
 <script src="/assets/js/main.js" defer></script>
+<button class="back-top" id="backTop" aria-label="Kembali ke atas"></button>
 </body>
 </html>

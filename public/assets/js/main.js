@@ -131,7 +131,19 @@
     syncFields();
   }
 
-  /* reveal on scroll */
+  /* back to top */
+  var backTop = document.getElementById("backTop");
+  if (backTop) {
+    var lastY = 0;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY;
+      if (y > 500 && y < lastY) backTop.classList.add("show");
+      else backTop.classList.remove("show");
+      lastY = y;
+    }, { passive: true });
+    backTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+  }
+
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
