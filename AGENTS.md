@@ -26,7 +26,7 @@ C:\xampp\mysql\bin\mysql.exe -u root paktjip < database\paktjip.sql
 
 ## Konvensi project
 
-- Struktur folder sesuai `rencana-lengkap-paktjip.pdf`: `public/` (landing) + `admin/` (login) + `config/` + `database/`
+- Struktur: `public/` (docroot — landing + `public/admin/` panel) + `config/` + `database/` + `tools/` (di luar docroot). Admin WAJIB tetap di dalam `public/admin/` (semua file auth-gated).
 - PHP native + PDO prepared statements (jangan mysqli raw, jangan string concat query)
 - Semua gambar upload â†’ WebP max 1200px via GD
 - Wa link: `https://wa.me/6282137215808?text=...` (urlencode pesan)
