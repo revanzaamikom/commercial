@@ -1,3 +1,7 @@
 .impeccable/
 assets/_source/
 *.log
+.opencode/
+assets/_products/
+config/database.php
+*.log

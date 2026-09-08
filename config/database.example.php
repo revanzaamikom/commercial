@@ -1,12 +1,12 @@
 <?php
-// PDO connection — production: move creds out of repo
+// Salin file ini jadi config/database.php lalu isi kredensial asli (jangan di-commit).
 function db(): PDO {
     static $pdo = null;
     if ($pdo === null) {
         $pdo = new PDO(
             'mysql:host=127.0.0.1;dbname=paktjip;charset=utf8mb4',
-            'root',
-            '',
+            'GANTI_USER',
+            'GANTI_PASSWORD',
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
         );
     }
