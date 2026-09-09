@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /includes/
-Sitemap: https://paktjip.com/sitemap.xml
+Disallow: /admin/
+Sitemap: https://paktjip.com/sitemap.php

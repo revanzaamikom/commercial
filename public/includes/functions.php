@@ -84,6 +84,14 @@ function jam_label(array $s): string {
     return 'Senin–Sabtu 08.00–17.30 · Minggu tutup';
 }
 
+function site_url(): string {
+    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https')
+        || (($_SERVER['SERVER_PORT'] ?? '') == 443);
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    return ($https ? 'https' : 'http') . '://' . $host;
+}
+
 function json_ld(array $s, array $faq): string {
     $jam = json_decode($s['jam_operasional'] ?? '{}', true) ?: [];
     $days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -107,7 +115,7 @@ function json_ld(array $s, array $faq): string {
         'address' => ['@type' => 'PostalAddress', 'streetAddress' => $s['alamat'], 'addressRegion' => 'Jawa Tengah', 'addressLocality' => 'Temanggung', 'addressCountry' => 'ID'],
         'telephone' => '+' . preg_replace('/\D/', '', $s['no_whatsapp']),
         'email' => $s['email'],
-        'url' => 'https://paktjip.com',
+        'url' => site_url(),
         'openingHoursSpecification' => $spec,
         'priceRange' => 'Rp3.000 - Rp8.100.000',
         'sameAs' => [
